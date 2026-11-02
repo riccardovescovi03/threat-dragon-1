@@ -1,18 +1,1433 @@
 {
-  "version": "2.6.2",
-  "release_version": "1.0",
-  "released_at": "",
+  "version": "2.4.0",
   "summary": {
-    "title": "Threat Model 1",
-    "owner": "Riccardin",
-    "description": "",
+    "title": "HelixPay: Customer Payment Data Threat Model",
+    "owner": "Security Team",
+    "description": "STRIDE model derived from the whiteboard attack tree. Attacker goal: steal real customer payment data from HelixPay. Attack paths: phishing, weak MFA + 16 admin accounts, Log4j to payment server, Jenkins to privilege escalation, MITM, lateral movement, staging API exposed, AWS publicly exposed, security misconfiguration.",
     "id": 0
   },
   "detail": {
-    "contributors": [],
-    "diagrams": [],
+    "contributors": [
+      {
+        "name": ""
+      }
+    ],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "HelixPay Main Data Flow",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.4.0",
+        "cells": [
+          {
+            "position": {
+              "x": 20,
+              "y": 20
+            },
+            "size": {
+              "width": 620,
+              "height": 520
+            },
+            "attrs": {
+              "label": {
+                "text": "Internet / Untrusted"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "10248b7f-59c8-4ee2-9841-2f4031f402d3",
+            "zIndex": 0,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Internet / Untrusted",
+              "description": "Customers, attackers, public clients",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 660,
+              "y": 20
+            },
+            "size": {
+              "width": 980,
+              "height": 740
+            },
+            "attrs": {
+              "label": {
+                "text": "HelixPay AWS Cloud"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "ec9a9006-e30c-44ca-a010-cf2dbc4bb7ab",
+            "zIndex": 0,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "HelixPay AWS Cloud",
+              "description": "AWS-hosted HelixPay environment",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 20,
+              "y": 580
+            },
+            "size": {
+              "width": 620,
+              "height": 300
+            },
+            "attrs": {
+              "label": {
+                "text": "Corporate / Admin Zone"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "b1a3e48a-c9b4-4d1e-90fc-7f5102a43632",
+            "zIndex": 0,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Corporate / Admin Zone",
+              "description": "Admin users, Jenkins, Microsoft services",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 60,
+              "y": 100
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Customer"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "4318c7af-178d-4bed-a91a-05b58853dd31",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Customer",
+              "description": "End user paying via HelixPay (target of phishing)",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "a415cb0f-5679-41c9-a3c9-a7cf3a764b7b",
+                  "title": "Customer phishing / credential theft",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Attacker phishes customers to obtain credentials and impersonates them via the App or API Gateway.",
+                  "mitigation": "Phishing-resistant MFA (passkeys/FIDO2), risk-based login, anti-phishing education, transaction signing/step-up auth, anomaly detection.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                }
+              ],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 300,
+              "y": 100
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "App (Web/Mobile)"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "33b77af8-efea-421e-8584-5f891118096e",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "App (Web/Mobile)",
+              "description": "Customer-facing application",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "34cece48-cd4a-4bd1-a129-b464228e81c8",
+                  "title": "XSS / client-side injection",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "XSS (noted on the whiteboard as 'XSS evidence') lets an attacker run script in the customer's session and steal tokens or payment data.",
+                  "mitigation": "Output encoding, strict CSP, HttpOnly/SameSite cookies, input validation, SAST/DAST in CI.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": ""
+                },
+                {
+                  "id": "a869bdbb-2350-4d38-9aa1-5b55ec28927f",
+                  "title": "Insecure data exposure in client",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Sensitive payment data cached or logged on the device or in the browser.",
+                  "mitigation": "No sensitive data in local storage/logs, tokenise card data, certificate pinning on mobile.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
+                },
+                {
+                  "id": "bcd759e4-1c71-4f5c-8d15-589cef9446f4",
+                  "title": "Man-in-the-middle on client traffic",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "MITM on untrusted networks intercepts or alters traffic.",
+                  "mitigation": "TLS 1.2+/HSTS, certificate pinning, disallow downgrade.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 300,
+              "y": 300
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "API Gateway"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "8fc10328-e1c4-4ba3-ac76-c6a3c6760d95",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "API Gateway",
+              "description": "Entry point for all API calls",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "0e91c102-9577-4553-abfb-2a65510035b6",
+                  "title": "Stolen/forged API tokens",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Attacker replays or forges tokens obtained via phishing or MITM.",
+                  "mitigation": "Short-lived OAuth2/JWT, mTLS for service clients, token binding, revocation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": ""
+                },
+                {
+                  "id": "09203362-96f9-4a4f-9e09-03129a828598",
+                  "title": "Missing rate limiting / abuse",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Flooding or credential stuffing exhausts the gateway.",
+                  "mitigation": "Rate limiting, WAF, bot protection, autoscaling.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                },
+                {
+                  "id": "bc2829ee-fe90-4889-a3aa-07fa7248e1ac",
+                  "title": "Broken authorisation (BOLA/IDOR)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Customers access other customers' payment data via object-ID manipulation.",
+                  "mitigation": "Server-side authorisation on every request, schema validation, API security tests.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 720,
+              "y": 200
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Payment Server (Log4j)"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "512d32a3-06b1-433b-ba5c-f9ada8109fce",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "Payment Server (Log4j)",
+              "description": "Processes payments; uses Log4j",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "122a8b54-9523-41cc-83ed-236670d5cd18",
+                  "title": "Log4j (Log4Shell) remote code execution",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Vulnerable Log4j allows RCE via attacker-controlled log input, giving a path from Log4j to the payment server and the DB.",
+                  "mitigation": "Upgrade Log4j to a patched version, SBOM and dependency scanning (SCA), disable JNDI lookups, egress filtering, run with least privilege.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": ""
+                },
+                {
+                  "id": "cff1311e-9d03-483b-a348-5fcf019a742d",
+                  "title": "Insufficient audit logging of payments",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Payment actions can't be traced reliably to a user or system.",
+                  "mitigation": "Tamper-evident centralised logging, immutable audit trail, NTP sync.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": ""
+                },
+                {
+                  "id": "719823e0-1b5a-4cba-8d95-72a40cef463d",
+                  "title": "Sensitive data written to logs",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Card data or tokens end up in Log4j output.",
+                  "mitigation": "Log scrubbing/masking, PCI DSS logging rules.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": ""
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 1160,
+              "y": 200
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Customer Payment DB"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "id": "4b86f8bd-d552-414e-8663-cbb3253adf9f",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Store",
+              "name": "Customer Payment DB",
+              "description": "Stores real customer payment data (the attacker's goal)",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "75a3f6dd-7a68-4abe-af25-bc95b3d61fd7",
+                  "title": "Unauthorised DB access (central attack node)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Multiple paths converge on DB access: compromised admin accounts, lateral movement, exposed AWS resources, payment server compromise, staging API.",
+                  "mitigation": "Network segmentation, private subnets/no public endpoints, DB-level least privilege, JIT/PAM for admin access, DB activity monitoring, tokenisation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": ""
+                },
+                {
+                  "id": "daf369cd-bcae-46e4-a90d-bbe1363a9634",
+                  "title": "Unencrypted or weakly protected data at rest",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Exfiltrated storage or backups reveal payment data.",
+                  "mitigation": "Encryption at rest with KMS/HSM keys, key rotation, field-level encryption, backup protection.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": ""
+                },
+                {
+                  "id": "8d97e7ca-371c-4db5-b8d8-126173ebb073",
+                  "title": "Data tampering by privileged user",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Unauthorised modification of payment records.",
+                  "mitigation": "Integrity controls, change auditing, four-eyes approval for admin changes.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": ""
+                }
+              ],
+              "isALog": false,
+              "isEncrypted": true,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false
+            }
+          },
+          {
+            "position": {
+              "x": 1160,
+              "y": 430
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Staging / API Server"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "ee3f0362-55c3-4cb3-ab1e-8c4669e122f3",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "Staging / API Server",
+              "description": "Staging API server, exposed to the internet",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "5804bfab-b978-4fb1-8818-4dfe0d224b23",
+                  "title": "Exposed staging server with prod data or credentials",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Publicly reachable staging API with weak controls gives an attacker a route to the DB.",
+                  "mitigation": "Remove public exposure, IP allow-listing/VPN, no production data or secrets in staging, separate AWS accounts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": ""
+                },
+                {
+                  "id": "aa834814-86ca-4e73-81c0-27e9ff0bdb15",
+                  "title": "Security misconfiguration",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Default configs, debug endpoints or open ports.",
+                  "mitigation": "Hardening baselines (CIS), IaC scanning, config drift detection.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": ""
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 1160,
+              "y": 620
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "AWS Cloud Infrastructure"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "9d9c5235-1341-4687-84af-e93036652ebf",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "AWS Cloud Infrastructure",
+              "description": "Cloud resources (S3, IAM, security groups)",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "04cce6e0-3fe3-401d-b610-93c57e84e7eb",
+                  "title": "Publicly exposed cloud resources",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Misconfigured S3 buckets, security groups or DB endpoints are open to the internet.",
+                  "mitigation": "Block Public Access, AWS Config/Security Hub rules, CSPM, least-privilege IAM, SCPs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": ""
+                },
+                {
+                  "id": "a6e4aae4-e979-43ef-bd51-da48b6013db7",
+                  "title": "Lateral movement within the cloud network",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "After the first foothold the attacker moves laterally to reach the DB.",
+                  "mitigation": "Micro-segmentation, security groups per tier, IAM role separation, GuardDuty/EDR, network detection.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": ""
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 60,
+              "y": 640
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Admin Users (16 accounts)"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "ae9d7f19-6d72-480f-bb13-76828662a16c",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Admin Users (16 accounts)",
+              "description": "16 privileged administrator accounts",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "9a636c16-fcd0-4ddd-9124-bc24374b4d73",
+                  "title": "Admin account compromise via weak MFA implementation",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Phishing plus weak MFA (e.g. SMS, no number matching) lets the attacker take over any of 16 admin accounts (AND-node on whiteboard).",
+                  "mitigation": "Phishing-resistant MFA (FIDO2) for all admins, reduce the number of admin accounts, conditional access, PAM with JIT elevation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": ""
+                },
+                {
+                  "id": "d4d04575-2776-4be3-ad63-1a04db965b73",
+                  "title": "Privilege escalation to DB access",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Admin or Jenkins-level foothold is escalated to DB-level access.",
+                  "mitigation": "Least privilege, separation of duties, privileged session recording, regular access reviews.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 19,
+                  "score": ""
+                }
+              ],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 300,
+              "y": 640
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Microsoft Services (Identity/M365)"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "20131ca6-c357-4e4a-879a-2328914f1edd",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "Microsoft Services (Identity/M365)",
+              "description": "Corporate identity and collaboration services",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "85ffa20c-6c35-4518-9b9c-5526982712ae",
+                  "title": "MITM / token theft on Microsoft services",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "AiTM phishing or MITM captures session tokens and bypasses MFA.",
+                  "mitigation": "Conditional access, token protection, compliant-device requirement, continuous access evaluation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": ""
+                },
+                {
+                  "id": "c21177b2-96dc-49c9-bd1c-b9c788c6af43",
+                  "title": "Lateral movement from corporate to cloud",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "Compromised corporate identity pivots to AWS or the DB.",
+                  "mitigation": "Separate identities for admin and cloud access, no standing privileges, federation controls.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": ""
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 300,
+              "y": 800
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Jenkins Server (CI/CD)"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "523867db-9878-49e3-998d-bf418828290c",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "Jenkins Server (CI/CD)",
+              "description": "Build and deploy server",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "96ea07aa-cca8-43ec-abbb-5918c1766344",
+                  "title": "Compromised Jenkins leads to privilege escalation",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Vulnerable plugins or exposed Jenkins give code execution and access to deployment credentials.",
+                  "mitigation": "Patch and harden Jenkins, SSO and RBAC, secrets in a vault, ephemeral build agents, no public exposure.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": ""
+                },
+                {
+                  "id": "6285b02c-7a2c-4fec-ab94-b61e5f8e5217",
+                  "title": "Malicious or tampered build artifacts",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Attacker modifies pipeline or artifacts deployed to the Payment Server.",
+                  "mitigation": "Signed artifacts, protected branches, pipeline-as-code review, SLSA provenance.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": ""
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "bbe830ce-6d2c-455c-9af9-9cb14210d647",
+            "source": {
+              "cell": "4318c7af-178d-4bed-a91a-05b58853dd31"
+            },
+            "target": {
+              "cell": "33b77af8-efea-421e-8584-5f891118096e"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "Payments / login"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Payments / login",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublic": false,
+              "protocol": "HTTPS",
+              "threats": [
+                {
+                  "id": "fdaacdb4-962a-4ddf-bf10-076eb15d49df",
+                  "title": "Interception of customer traffic",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Network attacker (MITM) reads or alters data in transit.",
+                  "mitigation": "TLS 1.2+, HSTS, certificate pinning.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 24,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "f4bbe3ff-1f26-46b3-959b-547ac59eb7e8",
+            "source": {
+              "cell": "33b77af8-efea-421e-8584-5f891118096e"
+            },
+            "target": {
+              "cell": "8fc10328-e1c4-4ba3-ac76-c6a3c6760d95"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "API calls"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "API calls",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublic": false,
+              "protocol": "HTTPS",
+              "threats": [
+                {
+                  "id": "2db36bba-16b5-4920-ab08-73951803b3ad",
+                  "title": "Request tampering / replay",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Attacker modifies or replays API requests.",
+                  "mitigation": "Signed requests, nonces/timestamps, server-side validation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 25,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "243bbfb5-feed-4607-9032-27feaa0af699",
+            "source": {
+              "cell": "8fc10328-e1c4-4ba3-ac76-c6a3c6760d95"
+            },
+            "target": {
+              "cell": "512d32a3-06b1-433b-ba5c-f9ada8109fce"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "Payment requests"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Payment requests",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublic": false,
+              "protocol": "HTTPS/mTLS",
+              "threats": [
+                {
+                  "id": "c0634398-5c8e-4399-9082-46a853890e3a",
+                  "title": "Unauthenticated internal calls",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Internal service calls accepted without authentication.",
+                  "mitigation": "mTLS or signed service tokens between tiers.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 26,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "2d73e57e-3be8-48be-9239-567430a74f16",
+            "source": {
+              "cell": "512d32a3-06b1-433b-ba5c-f9ada8109fce"
+            },
+            "target": {
+              "cell": "4b86f8bd-d552-414e-8663-cbb3253adf9f"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "SQL queries"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "SQL queries",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublic": false,
+              "protocol": "TLS/SQL",
+              "threats": [
+                {
+                  "id": "fba459ae-6ca9-4df1-b8f8-5ef1a0ef3152",
+                  "title": "SQL injection via payment server",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Injected SQL reads or alters payment data.",
+                  "mitigation": "Parameterised queries, ORM, least-privilege DB user, WAF.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "4303713d-c8c1-4047-849a-4d68b287cbb9",
+            "source": {
+              "cell": "ae9d7f19-6d72-480f-bb13-76828662a16c"
+            },
+            "target": {
+              "cell": "20131ca6-c357-4e4a-879a-2328914f1edd"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "SSO / MFA"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "SSO / MFA",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublic": false,
+              "protocol": "HTTPS",
+              "threats": [
+                {
+                  "id": "fef1bef1-6127-4e82-9ac7-9b868d3a427f",
+                  "title": "MFA bypass or fatigue attack",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Push bombing or AiTM defeats weak MFA.",
+                  "mitigation": "Number matching, FIDO2, alerting on unusual MFA prompts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 28,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "7fa1e4b8-0461-43e9-9593-ed937046f879",
+            "source": {
+              "cell": "ae9d7f19-6d72-480f-bb13-76828662a16c"
+            },
+            "target": {
+              "cell": "523867db-9878-49e3-998d-bf418828290c"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "Pipeline admin"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Pipeline admin",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublic": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "8c9a9971-3021-4b4c-9cce-651d10735077",
+            "source": {
+              "cell": "523867db-9878-49e3-998d-bf418828290c"
+            },
+            "target": {
+              "cell": "512d32a3-06b1-433b-ba5c-f9ada8109fce"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "Deploys"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Deploys",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublic": false,
+              "protocol": "SSH/HTTPS",
+              "threats": [
+                {
+                  "id": "8bd96c52-db25-408b-925e-bda09106fdc1",
+                  "title": "Stolen deploy credentials",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Credentials stored in Jenkins are used to push malicious code or reach servers.",
+                  "mitigation": "Vault-based short-lived credentials, restricted deploy roles.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "c9ffc3e1-2da6-4b06-9e7b-31d2d038362b",
+            "source": {
+              "cell": "ee3f0362-55c3-4cb3-ab1e-8c4669e122f3"
+            },
+            "target": {
+              "cell": "4b86f8bd-d552-414e-8663-cbb3253adf9f"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "Staging data access"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Staging data access",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublic": false,
+              "protocol": "TLS/SQL",
+              "threats": [
+                {
+                  "id": "2a86d3d3-906c-4082-88e0-a26b8b4f16af",
+                  "title": "Staging used as a bridge to the production DB",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Staging has network or credential access to the production DB.",
+                  "mitigation": "Block staging-to-prod routes, separate credentials and accounts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "9e3548a3-bb7f-48fa-b93e-6c1d82558219",
+            "source": {
+              "cell": "ae9d7f19-6d72-480f-bb13-76828662a16c"
+            },
+            "target": {
+              "cell": "4b86f8bd-d552-414e-8663-cbb3253adf9f"
+            },
+            "vertices": [
+              {
+                "x": 400,
+                "y": 960
+              },
+              {
+                "x": 1400,
+                "y": 960
+              }
+            ],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "Admin DB access"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Admin DB access",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublic": false,
+              "protocol": "TLS/SQL",
+              "threats": [
+                {
+                  "id": "181931d2-3b60-4ac9-9419-aa5d4afe8240",
+                  "title": "Direct privileged DB access abused",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "A compromised admin account reads the database directly.",
+                  "mitigation": "Bastion/PAM, JIT access, session recording, MFA on DB access.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 31,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "6063f3ac-b34f-4d80-9303-5699efb093a3",
+            "source": {
+              "cell": "9d9c5235-1341-4687-84af-e93036652ebf"
+            },
+            "target": {
+              "cell": "4b86f8bd-d552-414e-8663-cbb3253adf9f"
+            },
+            "vertices": [
+              {
+                "x": 1300,
+                "y": 560
+              }
+            ],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "Cloud resource access"
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Cloud resource access",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublic": false,
+              "protocol": "AWS APIs",
+              "threats": [
+                {
+                  "id": "a16b0194-959f-46f4-8075-b00b235a55b1",
+                  "title": "Publicly exposed AWS resources reach the DB",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Exposed snapshots, buckets or endpoints bypass app controls.",
+                  "mitigation": "Private networking, CSPM, snapshot sharing blocks.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 32,
+                  "score": ""
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
     "diagramTop": 1,
-    "reviewer": "Riccardin",
-    "threatTop": 0
+    "reviewer": "",
+    "threatTop": 32
   }
 }
