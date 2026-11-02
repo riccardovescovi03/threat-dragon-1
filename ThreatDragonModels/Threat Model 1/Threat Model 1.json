@@ -27,8 +27,8 @@
               "y": 20
             },
             "size": {
-              "width": 620,
-              "height": 520
+              "width": 600,
+              "height": 460
             },
             "attrs": {
               "label": {
@@ -38,7 +38,7 @@
             "visible": true,
             "shape": "trust-boundary-box",
             "id": "ea3bab3e-a84f-4032-aa96-92c43cdab5bf",
-            "zIndex": 0,
+            "zIndex": -1,
             "data": {
               "type": "tm.BoundaryBox",
               "name": "Internet / Untrusted",
@@ -49,12 +49,12 @@
           },
           {
             "position": {
-              "x": 660,
+              "x": 700,
               "y": 20
             },
             "size": {
-              "width": 980,
-              "height": 740
+              "width": 1000,
+              "height": 780
             },
             "attrs": {
               "label": {
@@ -64,7 +64,7 @@
             "visible": true,
             "shape": "trust-boundary-box",
             "id": "026d9fd9-4118-4279-bedf-8844672160b2",
-            "zIndex": 0,
+            "zIndex": -1,
             "data": {
               "type": "tm.BoundaryBox",
               "name": "HelixPay AWS Cloud",
@@ -76,11 +76,11 @@
           {
             "position": {
               "x": 20,
-              "y": 580
+              "y": 560
             },
             "size": {
-              "width": 620,
-              "height": 300
+              "width": 600,
+              "height": 460
             },
             "attrs": {
               "label": {
@@ -90,7 +90,7 @@
             "visible": true,
             "shape": "trust-boundary-box",
             "id": "11e22c81-ebfa-4786-9948-7790824d9500",
-            "zIndex": 0,
+            "zIndex": -1,
             "data": {
               "type": "tm.BoundaryBox",
               "name": "Corporate / Admin Zone",
@@ -101,12 +101,12 @@
           },
           {
             "position": {
-              "x": 60,
-              "y": 100
+              "x": 50,
+              "y": 120
             },
             "size": {
-              "width": 160,
-              "height": 80
+              "width": 170,
+              "height": 90
             },
             "attrs": {
               "text": {
@@ -116,6 +116,10 @@
                 "stroke": "red",
                 "strokeWidth": 2.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Customer",
+                "fontSize": 16
               }
             },
             "visible": true,
@@ -149,12 +153,12 @@
           },
           {
             "position": {
-              "x": 300,
-              "y": 100
+              "x": 420,
+              "y": 60
             },
             "size": {
-              "width": 160,
-              "height": 80
+              "width": 140,
+              "height": 140
             },
             "attrs": {
               "text": {
@@ -164,6 +168,10 @@
                 "stroke": "red",
                 "strokeWidth": 2.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "App (Web/Mobile)",
+                "fontSize": 16
               }
             },
             "visible": true,
@@ -226,12 +234,12 @@
           },
           {
             "position": {
-              "x": 300,
-              "y": 300
+              "x": 420,
+              "y": 290
             },
             "size": {
-              "width": 160,
-              "height": 80
+              "width": 140,
+              "height": 140
             },
             "attrs": {
               "text": {
@@ -241,6 +249,10 @@
                 "stroke": "red",
                 "strokeWidth": 2.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "API Gateway",
+                "fontSize": 16
               }
             },
             "visible": true,
@@ -303,12 +315,12 @@
           },
           {
             "position": {
-              "x": 720,
-              "y": 200
+              "x": 780,
+              "y": 290
             },
             "size": {
-              "width": 160,
-              "height": 80
+              "width": 150,
+              "height": 150
             },
             "attrs": {
               "text": {
@@ -318,6 +330,10 @@
                 "stroke": "red",
                 "strokeWidth": 2.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Payment Server (Log4j)",
+                "fontSize": 16
               }
             },
             "visible": true,
@@ -380,12 +396,12 @@
           },
           {
             "position": {
-              "x": 1160,
-              "y": 200
+              "x": 1450,
+              "y": 320
             },
             "size": {
-              "width": 160,
-              "height": 80
+              "width": 200,
+              "height": 90
             },
             "attrs": {
               "text": {
@@ -395,6 +411,10 @@
                 "stroke": "red",
                 "strokeWidth": 2.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Customer Payment DB",
+                "fontSize": 16
               }
             },
             "visible": true,
@@ -458,12 +478,12 @@
           },
           {
             "position": {
-              "x": 1160,
-              "y": 430
+              "x": 1100,
+              "y": 60
             },
             "size": {
-              "width": 160,
-              "height": 80
+              "width": 150,
+              "height": 150
             },
             "attrs": {
               "text": {
@@ -473,6 +493,10 @@
                 "stroke": "red",
                 "strokeWidth": 2.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Staging / API Server",
+                "fontSize": 16
               }
             },
             "visible": true,
@@ -522,12 +546,12 @@
           },
           {
             "position": {
-              "x": 1160,
-              "y": 620
+              "x": 1100,
+              "y": 560
             },
             "size": {
-              "width": 160,
-              "height": 80
+              "width": 150,
+              "height": 150
             },
             "attrs": {
               "text": {
@@ -537,6 +561,10 @@
                 "stroke": "red",
                 "strokeWidth": 2.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "AWS Cloud Infrastructure",
+                "fontSize": 16
               }
             },
             "visible": true,
@@ -586,12 +614,12 @@
           },
           {
             "position": {
-              "x": 60,
+              "x": 50,
               "y": 640
             },
             "size": {
-              "width": 160,
-              "height": 80
+              "width": 170,
+              "height": 90
             },
             "attrs": {
               "text": {
@@ -601,6 +629,10 @@
                 "stroke": "red",
                 "strokeWidth": 2.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Admin Users (16 accounts)",
+                "fontSize": 16
               }
             },
             "visible": true,
@@ -647,12 +679,12 @@
           },
           {
             "position": {
-              "x": 300,
-              "y": 640
+              "x": 420,
+              "y": 600
             },
             "size": {
-              "width": 160,
-              "height": 80
+              "width": 150,
+              "height": 150
             },
             "attrs": {
               "text": {
@@ -662,6 +694,10 @@
                 "stroke": "red",
                 "strokeWidth": 2.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Microsoft Services (Identity/M365)",
+                "fontSize": 16
               }
             },
             "visible": true,
@@ -711,12 +747,12 @@
           },
           {
             "position": {
-              "x": 300,
-              "y": 800
+              "x": 420,
+              "y": 820
             },
             "size": {
-              "width": 160,
-              "height": 80
+              "width": 150,
+              "height": 150
             },
             "attrs": {
               "text": {
@@ -726,6 +762,10 @@
                 "stroke": "red",
                 "strokeWidth": 2.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Jenkins Server (CI/CD)",
+                "fontSize": 16
               }
             },
             "visible": true,
@@ -804,6 +844,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "Payments / login"
+                  },
                   "text": {
                     "text": "Payments / login"
                   }
@@ -836,6 +879,9 @@
                   "score": ""
                 }
               ]
+            },
+            "router": {
+              "name": "normal"
             }
           },
           {
@@ -869,6 +915,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "API calls"
+                  },
                   "text": {
                     "text": "API calls"
                   }
@@ -901,6 +950,9 @@
                   "score": ""
                 }
               ]
+            },
+            "router": {
+              "name": "normal"
             }
           },
           {
@@ -934,6 +986,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "Payment requests"
+                  },
                   "text": {
                     "text": "Payment requests"
                   }
@@ -966,6 +1021,9 @@
                   "score": ""
                 }
               ]
+            },
+            "router": {
+              "name": "normal"
             }
           },
           {
@@ -999,6 +1057,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "SQL queries"
+                  },
                   "text": {
                     "text": "SQL queries"
                   }
@@ -1031,6 +1092,9 @@
                   "score": ""
                 }
               ]
+            },
+            "router": {
+              "name": "normal"
             }
           },
           {
@@ -1064,6 +1128,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "SSO / MFA"
+                  },
                   "text": {
                     "text": "SSO / MFA"
                   }
@@ -1096,6 +1163,9 @@
                   "score": ""
                 }
               ]
+            },
+            "router": {
+              "name": "normal"
             }
           },
           {
@@ -1129,6 +1199,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "Pipeline admin"
+                  },
                   "text": {
                     "text": "Pipeline admin"
                   }
@@ -1147,6 +1220,9 @@
               "isPublic": false,
               "protocol": "HTTPS",
               "threats": []
+            },
+            "router": {
+              "name": "normal"
             }
           },
           {
@@ -1180,6 +1256,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "Deploys"
+                  },
                   "text": {
                     "text": "Deploys"
                   }
@@ -1212,6 +1291,9 @@
                   "score": ""
                 }
               ]
+            },
+            "router": {
+              "name": "normal"
             }
           },
           {
@@ -1245,6 +1327,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "Staging data access"
+                  },
                   "text": {
                     "text": "Staging data access"
                   }
@@ -1277,6 +1362,9 @@
                   "score": ""
                 }
               ]
+            },
+            "router": {
+              "name": "normal"
             }
           },
           {
@@ -1307,18 +1395,21 @@
             },
             "vertices": [
               {
-                "x": 400,
-                "y": 960
+                "x": 135,
+                "y": 1060
               },
               {
-                "x": 1400,
-                "y": 960
+                "x": 1550,
+                "y": 1060
               }
             ],
             "labels": [
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "Admin DB access"
+                  },
                   "text": {
                     "text": "Admin DB access"
                   }
@@ -1351,6 +1442,9 @@
                   "score": ""
                 }
               ]
+            },
+            "router": {
+              "name": "normal"
             }
           },
           {
@@ -1379,16 +1473,14 @@
             "target": {
               "cell": "bc2785a9-ba4f-4a1c-8c3e-6784d9f450c6"
             },
-            "vertices": [
-              {
-                "x": 1300,
-                "y": 560
-              }
-            ],
+            "vertices": [],
             "labels": [
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "Cloud resource access"
+                  },
                   "text": {
                     "text": "Cloud resource access"
                   }
@@ -1421,6 +1513,9 @@
                   "score": ""
                 }
               ]
+            },
+            "router": {
+              "name": "normal"
             }
           }
         ]
@@ -1439,7 +1534,7 @@
               "y": 40
             },
             "size": {
-              "width": 400,
+              "width": 420,
               "height": 80
             },
             "attrs": {
@@ -1450,24 +1545,25 @@
                 "stroke": "red",
                 "strokeWidth": 3,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "GOAL: Steal real customer payment data from HelixPay",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "c8798ea5-b902-4f1a-b750-758776d4f2fc",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "GOAL: Steal real customer payment data from HelixPay",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -1476,8 +1572,8 @@
               "y": 220
             },
             "size": {
-              "width": 170,
-              "height": 70
+              "width": 190,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -1487,24 +1583,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "App",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "fa5fec0c-3645-4856-a068-9363a2464480",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "App",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -1513,8 +1610,8 @@
               "y": 220
             },
             "size": {
-              "width": 170,
-              "height": 70
+              "width": 190,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -1524,24 +1621,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "API Gateway",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "1fab05db-0adf-49fa-9e56-5a18b68adbbc",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "API Gateway",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -1550,8 +1648,8 @@
               "y": 220
             },
             "size": {
-              "width": 170,
-              "height": 70
+              "width": 190,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -1561,24 +1659,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "XSS evidence (Howol)",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "51efe1ec-9cb0-4ba3-b226-0fc2f92c11e1",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "XSS evidence (Howol)",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -1587,8 +1686,8 @@
               "y": 220
             },
             "size": {
-              "width": 170,
-              "height": 70
+              "width": 190,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -1598,24 +1697,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "DB access",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "1be79ab0-f672-4ac5-ba90-416ac53f7c16",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "DB access",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -1624,8 +1724,8 @@
               "y": 380
             },
             "size": {
-              "width": 170,
-              "height": 70
+              "width": 190,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -1635,24 +1735,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Phishing (customer)",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "a46c4404-a2ff-4c58-a767-6a70c45ba57a",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "Phishing (customer)",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -1661,8 +1762,8 @@
               "y": 380
             },
             "size": {
-              "width": 170,
-              "height": 70
+              "width": 190,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -1672,24 +1773,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Payment server",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "69777098-d7e6-41c4-a1b2-6c106ed13f25",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "Payment server",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -1698,8 +1800,8 @@
               "y": 380
             },
             "size": {
-              "width": 170,
-              "height": 70
+              "width": 190,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -1709,24 +1811,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Privilege escalation",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "83c913cf-15e7-4f2b-ad76-c8539222099d",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "Privilege escalation",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -1735,8 +1838,8 @@
               "y": 380
             },
             "size": {
-              "width": 170,
-              "height": 70
+              "width": 190,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -1746,24 +1849,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Lateral movement",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "9266d61d-dc62-4535-92f3-584ec018bed8",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "Lateral movement",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -1772,8 +1876,8 @@
               "y": 380
             },
             "size": {
-              "width": 190,
-              "height": 70
+              "width": 210,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -1783,24 +1887,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "AWS cloud publicly exposed",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "24362ba5-416e-47c0-932a-0594a4a0adcc",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "AWS cloud publicly exposed",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -1809,8 +1914,8 @@
               "y": 380
             },
             "size": {
-              "width": 190,
-              "height": 70
+              "width": 210,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -1820,24 +1925,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Staging / API server exposed",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "cefc51f8-071b-4595-9162-b3eeeaabfa91",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "Staging / API server exposed",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -1846,8 +1952,8 @@
               "y": 540
             },
             "size": {
-              "width": 170,
-              "height": 70
+              "width": 190,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -1857,24 +1963,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Log4j",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "8f547191-4abd-4172-9ba3-eb1e0badde01",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "Log4j",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -1883,8 +1990,8 @@
               "y": 540
             },
             "size": {
-              "width": 170,
-              "height": 70
+              "width": 190,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -1894,24 +2001,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Jenkins server",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "5d1cf5fe-c30e-42f6-ab23-e5e4ae5745c5",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "Jenkins server",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -1920,8 +2028,8 @@
               "y": 540
             },
             "size": {
-              "width": 170,
-              "height": 70
+              "width": 190,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -1931,24 +2039,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "16 admin accounts",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "f2962171-7b0b-446b-b0b0-06513dfff7c5",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "16 admin accounts",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -1957,8 +2066,8 @@
               "y": 540
             },
             "size": {
-              "width": 170,
-              "height": 70
+              "width": 190,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -1968,24 +2077,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "MS services",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "46595281-fc9b-4b4b-92e3-365d5a98d273",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "MS services",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -1994,8 +2104,8 @@
               "y": 540
             },
             "size": {
-              "width": 170,
-              "height": 70
+              "width": 190,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -2005,24 +2115,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Security misconfig",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "14bce020-220c-4633-ab11-cbd974fed241",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "Security misconfig",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -2031,8 +2142,8 @@
               "y": 700
             },
             "size": {
-              "width": 170,
-              "height": 70
+              "width": 190,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -2042,24 +2153,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Phishing",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "69feb939-32a7-44bf-9c72-3dbbe7549398",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "Phishing",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -2068,8 +2180,8 @@
               "y": 700
             },
             "size": {
-              "width": 190,
-              "height": 70
+              "width": 210,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -2079,24 +2191,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "Weak MFA implementation",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "20ea6f67-5ad6-4c36-b1bc-20063ca018df",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "Weak MFA implementation",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -2105,8 +2218,8 @@
               "y": 700
             },
             "size": {
-              "width": 170,
-              "height": 70
+              "width": 190,
+              "height": 80
             },
             "attrs": {
               "text": {
@@ -2116,24 +2229,25 @@
                 "stroke": "#333333",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
+              },
+              "label": {
+                "text": "MITM",
+                "fontSize": 16
               }
             },
             "visible": true,
-            "shape": "process",
+            "shape": "actor",
             "id": "ce0cda87-8c2c-492e-8b85-87f4e160cbec",
             "zIndex": 1,
             "data": {
-              "type": "tm.Process",
+              "type": "tm.Actor",
               "name": "MITM",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "threats": [],
-              "privilegeLevel": "",
-              "isWebApplication": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false
+              "providesAuthentication": false
             }
           },
           {
@@ -2167,6 +2281,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -2218,6 +2335,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -2269,6 +2389,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -2320,6 +2443,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -2371,6 +2497,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -2422,6 +2551,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -2473,6 +2605,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -2524,6 +2659,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -2575,6 +2713,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -2626,6 +2767,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -2677,6 +2821,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -2728,6 +2875,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "leads to"
+                  },
                   "text": {
                     "text": "leads to"
                   }
@@ -2779,6 +2929,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -2830,6 +2983,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -2881,6 +3037,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -2932,6 +3091,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "AND"
+                  },
                   "text": {
                     "text": "AND"
                   }
@@ -2983,6 +3145,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "AND"
+                  },
                   "text": {
                     "text": "AND"
                   }
@@ -3034,6 +3199,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -3085,6 +3253,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
@@ -3136,6 +3307,9 @@
               {
                 "position": 0.5,
                 "attrs": {
+                  "label": {
+                    "text": "OR"
+                  },
                   "text": {
                     "text": "OR"
                   }
